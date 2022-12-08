@@ -1,0 +1,805 @@
+
+## Creating an empty List
+list1 = []
+list2 = list()
+print(type(list1))
+print(type(list2))
+
+list2
+
+"""Lists can contain different types of variable, even in the same list."""
+
+# Lists can contain different types of variable, even in the same list.
+
+# create a list named num_list that stores first four numbers 1, 2, 3, 4
+list1 = [*range(1,4+1)]
+print(list1)
+
+# create a list with integer data type 1,2, float data type 3.0, 3.1 and string data type 'first', 'second', 'third'
+list1 = [1,2,3.0,3.1, 'first', 'second', 'third']
+list1
+
+## Finding the length of the list
+len(list1)
+
+## List can contain more data types. Here list contains the list
+list2 = [4,5,91,-10, [*range(1,4)],list1]
+list2
+
+# change the third element to 10 and print the list again
+list2[2] = 10
+list2
+
+"""Lists are mutable; their contents can change as more statements are interpreted."""
+
+# append number 5 to the list created above
+list2.append(5)
+list2
+
+# create a list named list_one containing numbers 1,2,3,4
+list_one = list(*range(1,5)) #error bec list fn converts to list or creates empty one
+list_one = [*range(1,5)]
+list_one
+
+"""- The above code creates same references to a variable named `list_one` and `list_two`
+
+- Because lists are mutable, changing them can have side-effects on other variables.
+
+
+"""
+
+# append 5 to `list_one` 
+list_one.append(5)
+list_one
+
+# lets see what happens to list_one
+
+# create a list named list_one containing numbers 1,2,3,4
+list_one_new = [1, 2, 3, 4]
+# Creating a copy of the list 
+list_two = list_one_new.copy()
+list_two
+
+"""In the above code two different reference of 2 new variable.
+
+## List Indexing
+
+- Lists can be indexed using square brackets to retrieve the element stored in a particular position.  
+- Index value starts from 0 till length of the string minus one 
+- Indexing is exactly similar to indexing in strings except that indexing in lists returns the entire item at that position whereas in strings, the character at that position is returned
+"""
+
+num_list = [1,2,3,4]
+
+## Access the value using positive index
+for i in range(4):
+  print(num_list[i])
+
+# Can you access 4th index?
+num_list[4-1]
+
+## Access the value using negative index
+for i in range(-1,-4-1,-1):
+  print(num_list[i])
+
+# Can you access -5th index?
+num_list[-5]
+
+"""### Accessing a nested list"""
+
+# Create a Nested List
+new_list = [9, 10]
+num_nested_list = [1,2,3,4, []]
+num_nested_list[4] = new_list
+num_nested_list
+
+# Access the 2nd index of 5th index
+num_nested_list[4][1]
+
+"""## List  Slicing
+
+Indexing was only limited to accessing a single element, Slicing on the other hand is accessing a sequence of data inside the list. In other words "slicing" the list.
+
+Slicing is done by defining the index values of the first element and the last element from the parent list that is required in the sliced list. It is written as parentlist[ a : b ] where a,b are the index values from the parent list. If a or b is not defined then the index value is considered to be the first value for a if a is not defined and the last value for b when b is not defined.
+"""
+
+## Slice the list
+num_range = [0,1,2,3,4,5,6,7,8,9]
+print(num_range[:4])
+print(num_range[4:])
+print(num_range[:5])
+print(num_range[3:8+1])
+print(num_range[::2])
+print(num_range[1::2])
+print(num_range[::-1])
+print(num_range[:])
+
+## Slice the list using negative index
+print(num_range[-8:-2])
+
+"""### Applying aggregation on list
+
+In a list with elements as string, **max( )** and **min( )** is applicable. **max( )** would return a string element whose ASCII value is the highest and the lowest when **min( )** is used. Note that only the first index of each element is considered each time and if they value is the same then second index considered so on and so forth.
+"""
+
+# create a list of some strings and then print max and min
+string_list = ['bzaa','ds','nc','az','z','klm']
+print("Min is: ",min(string_list))
+print("Max is: ",max(string_list))
+
+c = 'R'
+print("The ASCII value of '" + c + "' is ", ord(c))
+
+c = 'r'
+print("The ASCII value of '" + c + "' is ", ord(c))
+print("The ASCII value of '" + '1' + "' is ", ord('1'))
+
+"""Here the first index of each element is considered and thus z has the highest ASCII value thus it is returned and minimum ASCII is a. But what if numbers are declared as strings?"""
+
+# create a list of integers (string) num_list
+num_list = ['1','94','93','1000']
+print("Min is: ",min(num_list))
+print("Max is: ",max(num_list))
+
+"""Even if the numbers are declared in a string the first index of each element is considered and the maximum and minimum values are returned accordingly."""
+
+# create a list of integers num_list
+num_list = [-30, 1, 102, 94, 3, 1000]
+print("Min is: ",min(num_list))
+print("Max is: ",max(num_list))
+
+"""But if you want to find the **max( )** string element based on the length of the string then another parameter 'key=len' is declared inside the **max( )** and **min( )** function."""
+
+# create a list names that contians element 'Earth','Air','Fire','Water'
+names = ['Earth','Air','Fire','Water']
+
+# print the longest and smallest word from the list names
+print("Max: ",sorted(names, key = len)[-1])
+print("Min: ",sorted(names, key = len)[0])
+print(sorted(names, key = len))
+
+"""### Converting a string into list
+
+A string can be converted into a list by using the list() function.
+"""
+
+# convert the string Relevel into list
+'Relevel'
+list('Relevel')
+
+"""List of words? Let's try using .split() which splits a string on the basis of spaces."""
+
+# split the string into list
+test_string = 'I will now convert this to a list of words'
+test_string.split()
+
+"""What about splitting on something else? Like a period? and then try to make it like a normal sentence using .join?"""
+
+# split the string using .
+string_to_split = 'Hi.Can.we.get.rid.of.the.periods.here'
+list1 = string_to_split.split('.')
+list1
+
+#Let's join it back with spaces and reassign it to the original name
+print(' '.join(list1))
+
+#Let's do it as a one-liner
+string_to_split = 'Hi.Can.we.get.rid.of.the.periods.here'
+print(' '.join(string_to_split.split('.')))
+
+"""By the way, triple quotes are used for multiline comments. Don't you think something similar can be used during new user signups?
+
+## Some common List Methods
+
+| Method Name | Use | Explanation |
+| --- | --- | --- |
+|insert |	alist.insert(i,item)	| Inserts an item at the ith position in a list |
+|pop	|	alist.pop()			 | Removes and returns the last item in a list|
+|pop	|	alist.pop(i)			| Removes and returns the ith item in a list|
+|sort   |	alist.sort()			| Modifies a list to be sorted|
+|reverse|	alist.reverse()	     | Modifies a list to be in reverse order|
+|del	|	del alist[i]			| Deletes the item in the ith position|
+|index  |	alist.index(item)	   | Returns the index of the first occurrence of item|
+|count  |	alist.count(item)	   | Returns the number of occurrences of item|
+|Removes|	alist.remove(item)	  | Removes the first occurrence of item|
+|append |    alist.append(item)	  | Adds a new item to the end of a list |
+
+## Adding to the List
+"""
+
+# create a list named list_one containing numbers 1,2,3,4
+l = [1, 2, 3, 4]
+
+# Pass two value i.e 6, 7 using append
+l.append(6,7)
+l
+
+## Passing single value as a list
+l.append([6,7])
+l
+
+"""### Using extend()"""
+
+# create a list named list_one containing numbers 1,2,3,4
+l = [1, 2, 3, 4]
+l.extend([6,7])
+l
+
+## Passing a single value in extend. It should be any iterable i.e list
+l
+
+"""### Using insert() method
+
+The `insert()` method inserts the specified value at the specified position.
+
+`list.insert(pos, elmnt)
+"""
+
+# Pass 9 to 3rd index
+l.insert(2,9)
+l
+
+# Pass 18 to -2nd index
+l.insert(-2,18) #before the -2nd index
+l
+
+"""## Removing the elements from the list"""
+
+# Python program to demonstrate 
+# Removal of elements in a List
+  
+# Creating a List
+l = [40, 50, 60, 50, 70, 80, 90, 70, "thirty", 110, 190, 200]
+print(l)
+  
+# Removing elements from List
+# using Remove() method
+
+# Remove 50 from the list
+l.remove(50)
+# Remove 70 from the list
+l.remove(70)
+# Remove thirty from the list
+l.remove('thirty')
+print("\nList after removal of mentioned elements: ")
+print(l)
+
+# Remove 100 from the list
+l.remove(100)
+
+# Pop the item from the list
+print(l)
+print(l[-1])
+l.pop()
+print(l)
+
+# Pop 2nd item from the list
+print(l)
+l.pop(-2)
+print(l)
+
+# Delete 1st item from the list
+print(l)
+l.pop(0)
+print(l)
+
+# Delete 2nd and 3rd item from the list
+print(l)
+del l[1:2+1]
+print(l)
+
+# Clearing all the values of the list
+print(l)
+del l[:]
+print("\nList after removing all the values: ")
+print(l)
+
+# Delete the entire list
+del l
+print(l)
+
+"""## State and identity
+
+- The state referred to by a variable is *different* from its identity.
+
+- To compare *state* use the `==` operator.
+
+- To compare *identity* use the `is` operator.
+
+- When we compare identity we check equality of references.
+
+- When we compare state we check equality of values.
+
+"""
+
+# create a list names that contians element 'Earth','Air','Fire','Water'
+names = ['Earth','Air','Fire','Water']
+
+"""Lets check if the items 'Air' and 'Wind' are present in the list or not"""
+
+# check if Wind is present in names list
+'Wind' in names
+
+# check if Air is present in names list
+'Air' in names
+
+# create a list X = [1,2] , create a list Y = [1] and append 2 to Y
+x = [1,2]
+y = [1]
+y.append(2)
+print(y)
+
+# check X and Y using "==" operator
+x = 5
+y = 5
+x==y
+
+# check the same with "is" operator
+x is y
+
+# if you append 3 to Y, x does not change. check?
+y.append(3)
+x
+
+"""## Sorting"""
+
+# sort the list names
+names.sort()
+print(names)
+
+#reverse sort the list names
+names.sort(reverse = True)
+print(names)
+
+"""## Reversing"""
+
+# Reverse the list
+print(names)
+print(names[::-1])
+
+print(names)
+names.reverse()
+print(names)
+
+l1 = [*range(12)]
+print(l1)
+l2 = l1*2
+print(l2)
+l3 = l1+l2
+l3
+
+l_1 = [1,1,0]
+l_1*2
+l_2 = [2,2,-1]
+l_1+l_2
+
+"""# Tuples  
+
+- Tuples are another way to combine different values.
+
+- The combined values can be of different types.
+
+- Like lists, they have a well-defined ordering and can be indexed.
+
+- To create a tuple in Python, use round brackets i.e **(** ) instead of square brackets which are used for lists.
+
+### Ways to create tuple object
+1. Using brackets like **(** **)** [ *Most common way to create a tuple* ]
+2. Using comma seperated values
+3. Using `tuple()` in built function
+"""
+
+# create a tuple with elements 0 and 'hello'
+t1 = (0, 'hello')
+t1
+
+# print first and second element of type, also print type
+print(t1[0])
+print(t1[1])
+print(type(t1))
+
+# create a tuple with elements 0 and 'hello'
+tuple_1 = (0, 'hello')
+print(tuple_1)
+print(type(tuple_1))
+
+print(l1)
+type(l1)
+
+t2 = tuple(l1)
+t2
+
+l2 = list(t2)
+type(l2)
+
+"""if you want to create a tuple with single value then make sure to pass a comma after first value."""
+
+## Is this tuple?
+tuple_2 = 'Relevel'  ## Without comma it considered as a string
+t3 = (12,)
+type(t3)
+
+# Create the same above string as a tuple
+tuple_2 = 'Relevel'
+print(tuple_2)
+print(type(tuple_2))
+
+## Convert a string into tuple
+name = "Relevel"
+t1 = tuple(list(name))
+t1
+
+"""## Tuples are immutable
+
+- Unlike lists, tuples are *immutable*.  Once we have created a tuple we cannot add values to it.
+
+"""
+
+t1
+
+## Immutable Tuple
+## Try converting r to R
+print(t1[0])
+t1[0]='Z'
+
+# try to append a number 23 to the tuple - tuple_1
+t1.append(23)
+
+# Will this work?
+t1[2] = "hi"
+
+# Delete 2nd item from the tuple
+del t1[2]
+
+## Delete the Tuple
+del t1
+t1
+
+"""Tuples are similar to lists but only big difference is the elements inside a list can be changed but in tuple it cannot be changed. Think of tuples as something which has to be True for a particular something and cannot be True for no other values.
+
+If you want to directly declare a tuple it can be done by using a comma at the end of the data. [MOVE IT PRATICE SESSION]
+"""
+
+# create a tuple using , 
+(27,)
+
+"""27 when multiplied by 2 yields 54, But when multiplied with a tuple the data is repeated twice."""
+
+# multiply the create tuple by 2 and see the results 
+(27,)*2
+
+"""Values can be assigned while declaring a tuple. It takes a list as input and converts it into a tuple or it takes a string and converts it into a tuple."""
+
+# crate a tuple named tuple_3 from a list of numbers 1,2,3
+t3 = tuple([1,2,3,4])
+t3
+
+"""## Slicing  
+Slicing is very similar to lists
+"""
+
+tuple_2 = 10, 100, 1000, 10000
+
+# get the second element of tuple_2
+
+print(tuple_2[1])
+# get the second element of tuple_2
+print(tuple_2[-3])
+
+tuple_3 = tuple_2, (20, 200, 2000, 20000)
+
+print(tuple_3)
+# get the second element of tuple _3
+
+print(tuple_3[1])
+# get the second element of tuple _3
+print(tuple_3[1][0])
+
+tuple_4 = tuple('GOOD MORNING')
+# get the first three letters of tuple GOOD MORNING
+tuple_4[:4]
+
+"""## Indexing  
+Indexing is again very similar to lists
+"""
+
+tuple_3 = 10, 100, 1000, 10000, 100000, 1000000
+# give hw
+
+"""## Built In Tuple functions  
+**count()** function counts the number of specified element that is present in the tuple.  
+**index()** function returns the index of the specified element. If the elements are more than one then the index of the first element of that specified element is returned
+"""
+
+# create a tuple named example with numbers 0,1,2,3,4,5,1,2,1 and use count and index
+example = (0,1,2,3,4,5,1,2,1)
+
+# use count
+print(example.count(1))
+
+# use index
+print(example.index(5))
+
+tup = (7,8,9,10,11,12,13,14,7,8,9,8,8,8)
+tup.count(8)
+
+tup = (7,8,9,10,11,12,13,14,7,8,9,8,8,8)
+tup.index(8)
+
+"""# Dictionary
+
+Dictionaries are more used like a database because here you can index a particular sequence with your user defined string. To define a dictionary, equate a variable to { } or dict()
+"""
+
+# initialise using dict()
+d1 = dict()
+d1
+
+"""## Dictionary Operators"""
+
+# create a dictionary with keys as Maharashtra and Tamil Nadu and values as Mumbai and Chennai
+d1 = {'Maharashtra': 'Mumbai',
+      'Tamil Nadu': 'Chennai'}
+print(d1)
+type(d1)
+
+"""## Update Dictionary
+1. Using **assignment (=)** operator. Dictionary works somewhat like a list but with an added capability of assigning it's own index style.
+2. Using **update()** function
+"""
+
+#create a new key Rajasthan whose capital(value) is Jaipur
+d1['Rajasthan'] = 'Jaipur'
+print(d1)
+
+#create another key-value i.e 'Punjab' : 'Chandigarh' pair using update()
+d1.update({'Punjab': 'Chandigarh', 'Jammu': 'Srinagar'})
+print(d1)
+
+"""Dictionary keys are unique and hence we cannot have two similar keys. Values can be the same though."""
+
+# add another key value pair Haryana and Chandigarh
+d1.update({'Haryana': 'Chandigarh'})
+print(d1)
+
+d1.update({0 : 1, "Nested_dict" : { "Key1" : "Value 1", "Key2" : 2}})
+d1
+
+d1['List_Values']= [0, 1, 2, 3, 4]
+
+print(d1)
+
+"""## Accessing the value of a Dictionary
+
+Lets look at some of the operators in Python
+
+[ ] : usage -> myDict[k] ,Returns the value associated with k, otherwise its an error
+"""
+
+#get the capital of Maharashtra
+d1['Maharashtra']
+
+"""### Accessing the nested values"""
+
+# Access Key1 from capitals
+d1["Nested_dict"]['Key1']
+
+d1
+
+d1['List_Values']
+
+# Access 2 from capitals
+d1['List_Values'][2]
+
+"""## Deleting the value from Dictionary
+
+**del**	operator : usage -> del adict[key] , Removes the entry from the dictionary
+"""
+
+# Delete Punjab from capital
+d1.pop('Punjab')
+d1
+
+# Delete 3 from List_Values
+del d1['List_Values'][3]
+d1
+
+# Pop item in Dict
+
+# Pop Nested_dict in Dict
+d1.pop('List_Values')
+d1
+
+d1.pop('Nested_dict')
+d1
+
+# Deleting entire Dictionary
+del d1
+d1
+
+"""## Dictionary Methods
+
+**in** operator : usage -> key in adict ,Returns True if key is in the dictionary, False otherwise
+"""
+
+# check if 'One' is present in dict_1
+'C hennai' in d1
+
+"""| Method | Use | Explanation |
+|----|---|---|
+| keys | adict.keys() |Returns the keys of the dictionary in a dict_keys object |
+| values	| adict.values() |	Returns the values of the dictionary in a dict_values object |
+| items	|adict.items()	|Returns the key-value pairs in a dict_items object|
+| get	|adict.get(k)	|Returns the value associated with k, None otherwise|
+| get	|adict.get(k,alt)	|Returns the value associated with k, alt otherwise|
+
+**values( )** function returns a list with all the assigned values in the dictionary./
+"""
+
+d1.items()
+
+# print the capitals and get the data type of those values
+capitals = {'Maharashtra': 'Mumbai', 'Tamil Nadu': 'Chennai', 'Rajasthan': 'Jaipur', 'Punjab': 'Chandigarh', 'Haryana': 'Chandigarh'}
+capitals.values()
+
+# to convert to a list use list()
+capitals_list = list(capitals.values())
+capitals_list
+
+"""**keys( )** function returns all the index or the keys to which contains the values that it was assigned to."""
+
+# print the keys of the dictionary and also print the data type
+capitals.keys()
+
+"""**items( )** is returns a list containing both the list but each element in the dictionary is inside a tuple."""
+
+# print the items of the dictionary
+ld1 = list(capitals.items())
+ld1
+#convert to list of tuples
+type(ld1[0])
+
+"""**get()** returns a value for the given key. If key is not available then returns default value None."""
+
+# get the value of Tamil Nadu
+capitals.get('Tamil Nadu')
+
+# get the value of Andhra Pradesh
+capitals['Punjab']
+
+"""# Sets  
+Sets are mainly used to eliminate repeated numbers in a sequence/list. It is also used to perform some standard set operations.
+
+Sets are declared as set() which will initialize a empty set. Also set([sequence]) can be executed to declare a set with elements
+"""
+
+# create a set named set_1 and initialise it by set()
+set1 = set()
+set1
+
+# create a set named set_1 and initialise it by set([1,2,2,3,3,4])
+set1 = set([5,1,2,2,3,3,4])
+set1
+
+# Different types of sets in Python
+# set of integers
+set_a = set([1,1,2,2,3,3,6])
+# set of mixed datatypes
+set_b = {11,22,'hi'}
+print(set_b)
+print(set_a)
+type(set_b)
+
+"""### Advantages of Python Sets
+
+Because sets cannot have multiple occurrences of the same element, it makes it highly useful to remove duplicate values from a list or tuple efficiently and perform everyday math operations like unions and intersections.
+"""
+
+## Remove the duplicates from list
+l = [0, 2, 4, 2, 3, 5, 4, 1, 5]
+set(l)
+
+# Find the set of above string
+name = "Relevel"
+set(name)
+
+"""## Set Methods - Built in set functions
+
+| Method Name | Use | Explanation |
+| --- | --- | --- |
+| union | aset.union(otherset) | Returns a new set with all elements from both sets |
+| intersection	| aset.intersection(otherset) |	Returns a new set with only those elements common to both sets |
+|difference	|aset.difference(otherset)	|Returns a new set with all items from first set not in second|
+|issubset|	aset.issubset(otherset)|		Asks whether all elements of one set are in the other|
+|add|	aset.add(item)|	Adds item to the set|
+|remove|	aset.remove(item)|	Removes item from the set|
+|pop|	aset.pop()|	Removes an arbitrary element from the set|
+|clear|	aset.clear()|	Removes all elements from the set|
+"""
+
+set_a = set([1,2,3])
+set_b = set([2,3,4,5])
+
+"""- Union: $X \cup Y$:  
+**union( )** function returns a set which contains all the elements of both the sets without repetition.
+"""
+
+# create a union of set_a and set_b
+set_a.union(set_b)
+
+# Union
+X = {1, 2, 3}
+Y = {4, 5, 6}
+
+"""- Intersection: $X \cap Y$:  
+**intersection( )** function outputs a set which contains all the elements that are in both sets.
+"""
+
+# create an intersection of set_a and set_b
+set_a.intersection(set_b)
+
+# create two sets X and Y and {1,2,3,4} and {3,4,5}
+X = {1, 2, 3, 4}
+Y = {3, 4, 5}
+
+"""- Difference $X - Y$:  
+**difference( )** function ouptuts a set which contains elements that are in set1 and not in set2.
+"""
+
+# find the difference b/w those sets
+X.difference(Y)
+
+Y.difference(X)
+
+"""**symmetric_difference( )** function ouputs a function which contains elements that are in one of the sets."""
+
+# Get the symmetric_difference of X and Y
+X.symmetric_difference(Y)
+
+"""## List to Set, Set to Tuple, and Tuple to List and Vice-Versa Conversion"""
+
+# List to Set
+
+# Initialise list with duplicates like ['A','B','A','C','D','C','C','B']
+X = ['A','B','A','C','D','C','C','B']
+
+# Set to List
+sx = set(X)
+#Convert it to a list by wrapping it back to a list
+sxl = list(sx)
+
+print(sx)
+print(sxl)
+
+# List to Tuple
+
+l_1 = [10,100,1000]
+t_1 = tuple(l_1)
+
+print(l_1, type(l_1))
+print(t_1, type(t_1))
+
+# Tuple to List
+
+t_2 = (10, 100, 1000)
+l_2 = list(t_2)
+
+print(t_2, type(t_2))
+print(l_2, type(l_2))
+
+# Set to Tuple
+
+s_1 = {1, 2, 3, 4}
+t_1 = tuple(s_1)
+
+print(s_1, type(s_1))
+print(t_1, type(t_1))
+
+# Tuple to Set
+
+t_1 = (1, 2, 3, 4)
+s_1 = set(t_1)
+
+print(t_1, type(t_1))
+print(s_1, type(s_1))
+
