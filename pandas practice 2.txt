@@ -1,0 +1,244 @@
+
+# Topics to cover for today -
+# (1) Label Encoder
+# (2) One Hot Encoder (Using pd.get_dummies)
+# (3) Concatenate
+# (4) Append
+
+# Importing important libraries
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+
+# Importing the dataset
+df = pd.read_csv('Mall_Customers_BP.csv')
+df.head()
+
+# Checking for null values
+df.isnull().sum()
+
+df.shape
+
+# Applying label encoding technique on 'genre' column
+encoder = LabelEncoder()
+df['Genre'] = encoder.fit_transform(df['Genre'])
+df.head()
+
+df['Genre'] = df.Genre.replace({1: 'M', 0:'F'})
+df
+
+# Importing the dataset
+df = pd.read_csv('Mall_Customers_BP.csv')
+df.head()
+
+l1 = ['R', 'G', 'B', 'B', 'B', 'R', 'G']
+
+encoder = LabelEncoder()
+lst2 = encoder.fit_transform(l1)
+lst2
+
+
+dummy = pd.get_dummies(l1)
+dummy
+
+# One Hot Encoder with get dummies
+dummy_gender = pd.get_dummies(df['Genre'])
+dummy_gender
+
+# Merging the two columns
+df = pd.merge(
+    left=df,
+    right=dummy_gender,
+    left_index=True,
+    right_index=True,
+)
+df
+
+pd.concat([df, dummy_gender], axis = 1)
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+data2 = {'Name' : ['Rahul', 'Ayushi', 'Sharvari', 'Dhiraj'],
+        'Age' : [22,23,24,25],
+        'Address' : ['Mumbai', 'Delhi', 'Wardha', 'Vizag'],
+        'Qualification' : ['BE', 'BA', 'BCOM', 'BCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+df1 = pd.DataFrame(data2, index = [4,5,6,7])
+
+# Printing the dataset
+print(df, '\n\n', df1)
+
+# Concatenating the two given dataframes
+frames = [df, df1]
+res1 = pd.concat(frames)
+res1
+
+# Exploring axis and join argument in pd.concat
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+data2 = {'Name' : ['Rahul', 'Ayushi', 'Sharvari', 'Dhiraj'],
+        'Age' : [22,23,24,25],
+        'Address' : ['Mumbai', 'Delhi', 'Wardha', 'Vizag'],
+        'Qualification' : ['BE', 'BA', 'BCOM', 'BCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+df1 = pd.DataFrame(data2, index = [2,3,6,7])
+
+# Printing the dataset
+print(df, '\n\n', df1)
+
+# Concatenating
+res2 = pd.concat([df, df1], axis = 1, join = 'inner')
+res2
+
+# Sort argument in concatenating
+res2 = pd.concat([df, df1], axis = 1, sort = False)
+res2
+
+# append() function
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+data2 = {'Name' : ['Rahul', 'Ayushi', 'Sharvari', 'Dhiraj'],
+        'Age' : [22,23,24,25],
+        'Address' : ['Mumbai', 'Delhi', 'Wardha', 'Vizag'],
+        'Qualification' : ['BE', 'BA', 'BCOM', 'BCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+df1 = pd.DataFrame(data2, index = [4,5,6,7])
+
+# Printing the dataset
+print(df, '\n\n', df1)
+
+# Using append function
+res = df.append(df1)
+res
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+data2 = {'Name' : ['Rahul', 'Ayushi', 'Sharvari', 'Dhiraj'],
+        'Age' : [22,23,24,25],
+        'Address' : ['Mumbai', 'Delhi', 'Wardha', 'Vizag'],
+        'Qualification' : ['BE', 'BA', 'BCOM', 'BCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+df1 = pd.DataFrame(data2, index = [2,3,6,7])
+
+# Printing the dataset
+print(df, '\n\n', df1)
+
+# ignore_index argument 
+res = pd.concat([df, df1], ignore_index = True)
+res
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+data2 = {'Name' : ['Rahul', 'Ayushi', 'Sharvari', 'Dhiraj'],
+        'Age' : [22,23,24,25],
+        'Address' : ['Mumbai', 'Delhi', 'Wardha', 'Vizag'],
+        'Qualification' : ['BE', 'BA', 'BCOM', 'BCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+df1 = pd.DataFrame(data2, index = [4,5,6,7])
+
+# Printing the dataset
+print(df, '\n\n', df1)
+
+# concatenating using keys
+frames = [df, df1]
+res = pd.concat(frames, keys = ['x', 'y'])
+res
+
+res.loc['x']
+
+res.loc['x']['Name']
+
+res.loc['y',5]
+
+res[res.Name == 'Sai']
+
+# Creating dataset
+data1 = {'Name' : ['Pranav', 'Sai', 'Niraj', 'Vijay'],
+        'Age' : [27,28,29,30],
+        'Address' : ['Nagpur', 'Kanpur', 'Satara', 'Pune'],
+        'Qualification' : ['ME', 'MBA', 'MSC', 'MCA']}
+
+# Converting dictionaries to dataframes
+df = pd.DataFrame(data1, index = [0,1,2,3])
+
+# Creating a series
+s1 = pd.Series([1000, 2000, 3000, 4000], name = 'Salary')
+print(df, '\n\n', s1)
+
+# Concatenating a dataframe and a series
+res = pd.concat([df, s1], axis = 1)
+res
+
+# Getting the data types
+res.dtypes
+
+# Converting int64 to int8
+res['Age'] = res['Age'].astype(np.int8)
+res.dtypes
+
+# Converting int64 to float
+res['Salary'] = res['Salary'].astype(float)
+res.dtypes
+
+print(list(res.Salary))
+
+# Concatenating a dataframe and a series
+res = pd.concat([df, s1], axis = 1)
+res
+
+# Getting the data types
+res.dtypes
+
+# Converting multiple columns
+res[['Age', 'Salary']] = res[['Age', 'Salary']].astype(float)
+res.dtypes
+
+# Concatenating a dataframe and a series
+res = pd.concat([df, s1], axis = 1)
+res
+
+# Getting the data types
+res.dtypes
+
+# Using downcast argument
+res['Age'] = pd.to_numeric(res['Age'], downcast = 'float')
+res.dtypes
+
+# Concatenating a dataframe and a series
+res = pd.concat([df, s1], axis = 1)
+res
+
+# Getting the data types
+res.dtypes

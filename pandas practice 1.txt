@@ -1,0 +1,155 @@
+# Topics to complete-
+# (1) Statistical Functions
+# (2) Data Transformations
+
+# Importing important libraries
+import pandas as pd
+import numpy as np
+
+# Importing the dataset
+df = pd.read_csv('Octane.csv')
+df.head()
+
+# Calculating mean for Material1, Material2, Material3, Condition and Octane columns
+m1_mean = df['Material1'].mean()
+m2_mean = df['Material2'].mean()
+m3_mean = df['Material3'].mean()
+cond_mean = df['Condition'].mean()
+octane_mean = df['Octane'].mean()
+print('Mean value for Material 1 is : ', m1_mean)
+print('Mean value for Material 2 is : ', m2_mean)
+print('Mean value for Material 3 is : ', m3_mean)
+print('Mean value for Condition is : ', cond_mean)
+print('Mean value for Octane is : ', octane_mean)
+
+# Calculating median for Material1, Material2, Material3, Condition and Octane columns
+m1_mdn = df['Material1'].median()
+m2_mdn = df['Material2'].median()
+m3_mdn = df['Material3'].median()
+cond_mdn = df['Condition'].median()
+octane_mdn = df['Octane'].median()
+print('Median value for Material 1 is : ', m1_mdn)
+print('Median value for Material 2 is : ', m2_mdn)
+print('Median value for Material 3 is : ', m3_mdn)
+print('Median value for Condition is : ', cond_mdn)
+print('Median value for Octane is : ', octane_mdn)
+
+# Calculating mode for Material1, Material2, Material3, Condition and Octane columns
+m1_mde = df['Material1'].mode()
+m2_mde = df['Material2'].mode()
+m3_mde = df['Material3'].mode()
+cond_mde = df['Condition'].mode()
+octane_mde = df['Octane'].mode()
+print('Mode value for Material 1 is : ', m1_mde)
+print('Mode value for Material 2 is : ', m2_mde)
+print('Mode value for Material 3 is : ', m3_mde)
+print('Mode value for Condition is : ', cond_mde)
+print('Mode value for Octane is : ', octane_mde)
+
+# Calculating count() for Material1, Material2, Material3, Condition and Octane columns
+m1_cnt = df['Material1'].count()
+m2_cnt = df['Material2'].count()
+m3_cnt = df['Material3'].count()
+cond_cnt = df['Condition'].count()
+octane_cnt = df['Octane'].count()
+print('Count for Material 1 is : ', m1_cnt)
+print('Count for Material 2 is : ', m2_cnt)
+print('Count for Material 3 is : ', m3_cnt)
+print('Count for Condition is : ', cond_cnt)
+print('Count for Octane is : ', octane_cnt)
+
+# Printing the shape of df
+print(df.shape)
+
+# unique() : gives you unique values.
+# nunique() : gives you number of rows with unique values.
+
+# Calculating standard deviation for Material1, Material2, Material3, Condition and Octane columns
+m1_std = df['Material1'].std()
+m2_std = df['Material2'].std()
+m3_std = df['Material3'].std()
+cond_std = df['Condition'].std()
+octane_std = df['Octane'].std()
+print('Standard Deviation for Material 1 is : ', m1_std)
+print('Standard Deviation for Material 2 is : ', m2_std)
+print('Standard Deviation for Material 3 is : ', m3_std)
+print('Standard Deviation for Condition is : ', cond_std)
+print('Standard Deviation for Octane is : ', octane_std)
+
+# Calculating minimum for Material1, Material2, Material3, Condition and Octane columns
+m1_min = df['Material1'].min()
+m2_min = df['Material2'].min()
+m3_min = df['Material3'].min()
+cond_min = df['Condition'].min()
+octane_min = df['Octane'].min()
+print('Minimum for Material 1 is : ', m1_min)
+print('Minimum for Material 2 is : ', m2_min)
+print('Minimum for Material 3 is : ', m3_min)
+print('Minimum for Condition is : ', cond_min)
+print('Minimum for Octane is : ', octane_min)
+
+# Calculating maximum for Material1, Material2, Material3, Condition and Octane columns
+m1_max = df['Material1'].max()
+m2_max = df['Material2'].max()
+m3_max = df['Material3'].max()
+cond_max = df['Condition'].max()
+octane_max = df['Octane'].max()
+print('Maximum for Material 1 is : ', m1_max)
+print('Maximum for Material 2 is : ', m2_max)
+print('Maximum for Material 3 is : ', m3_max)
+print('Maximum for Condition is : ', cond_max)
+print('Maximum for Octane is : ', octane_max)
+
+# Getting all the statistical parameters in one command
+df.describe()
+
+# Data Transformations
+
+# Importing new dataset
+df = pd.read_csv('https://raw.githubusercontent.com/TrainingByPackt/Data-Science-with-Python/master/Chapter01/Data/student.csv',index_col=0)
+df.head()
+
+# Command to include and exclude columns of numeric data type
+df_numeric = df.select_dtypes(include = [np.number])
+df_numeric.head()
+
+# Command to include and exclude columns of numeric data type
+df_categorical = df.select_dtypes(exclude = [np.number])
+df_categorical.head()
+
+# Getting unique values from Material 3 column
+print(df['Grade'].unique())
+
+# Getting number of unique values from Material 3 column
+print(df['Grade'].nunique())
+
+# Getting the proportion of categories from categorical columns
+df['Grade'].value_counts()
+
+# Getting the proportion of categories from categorical columns
+df['Gender'].value_counts()
+
+# Getting the proportion of categories from categorical columns
+df['Employed'].value_counts()
+
+pd.pivot_table(df.reset_index(), values='Student_id', index = 'Grade', aggfunc='count')
+
+# Replacing some values
+df['Gender'].replace(to_replace = {'Male' : 0, 'Female' : 1}, inplace = True)
+df['Employed'].replace({'no' : 0, 'yes' : 1}, inplace = True)
+df['Grade'].replace({'1st Class' : 1, '2nd Class' : 2, '3rd Class' : 3}, inplace = True)
+df.head()
+
+# Basic Data Transformation
+df = pd.DataFrame(np.array([[1,2,3],[4,5,6],[7,8,9]]), columns = ['a','b','c'])
+df.head()
+
+# Applying a small transformation
+df.transform(func = lambda x : x*10)
+
+# Applying a small transformation
+df.transform(func = lambda x : np.log(x))
+
+# Applying a small transformation
+df.transform(func = lambda x : np.exp(x))
+

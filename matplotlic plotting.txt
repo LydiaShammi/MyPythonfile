@@ -1,0 +1,327 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+"""# SCATTER PLOT"""
+
+plt.scatter(0,-14)
+
+plt.scatter([2,4,6,8,10],[1,3,4,5,7],s=100, c='yellow',marker='X',edgecolors='green')
+plt.show()
+plt.scatter([50,65], [25, 30], s=500, c='blue',marker='P')
+plt.show()
+plt.scatter(np.arange(10,20),np.arange(80,90),s=90, c='yellow',marker='h',edgecolors='red')
+plt.show()
+
+"""Real world chart"""
+
+x1 = [31,56,62,40,63,33,54,27,50,45,67,62,47,34,65,20,23,30,30,33]
+y1 = [30756,178769,242183,65583,254028,37014,160365,20403,127516,93132,305242,
+      242180,106044,40444,278834,8412,12707,27881,27886,37015]
+
+x2 = [45,62,39,21,42,35,26,27,58,33,59,40,47,23,32,49,34,30,58,48]
+y2 = [932490,2422260,600785,90706,750741,440033,180178,200501,1908463,360918,
+      2008792,605702,1006127,102753,330828,1200116,400424,270823,1908470,1102968]
+
+plt.scatter(x1,y1,s=50,c='blue',marker='*')
+plt.show()
+
+plt.scatter(x2,y2,s=30,c=x2, cmap='RdYlGn',marker='d')
+plt.xlabel('Time')
+plt.ylabel('Share Price')
+plt.title('Share price over Time')
+
+plt.scatter([2,4,6,8,10],[1,3,4,5,7],s=100, c='yellow',marker='X',edgecolors='green')
+plt.xlim([0,20])
+plt.ylim([0,10])
+plt.show()
+
+"""# LINE CHART"""
+
+x = range(1,21)
+
+y1 = list(np.random.randint(4000,5000,20))
+y2 = list(np.random.randint(5000,6000,20))
+
+# x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+# y1 = [4757, 4665, 3291, 3603, 3601, 4400, 3244, 4825, 3423, 3187, 4618, 3785,
+#       3636, 3146, 4027, 4016, 4388, 3689, 3103, 3429]
+# y2 = [4027, 5892, 5300, 5369, 4075, 4765, 5722, 5977, 5557, 4908, 5968, 4844,
+#       5523, 4522, 4185, 5089, 5197, 4149, 4105, 4471]
+
+plt.plot(x, y1, label = 'Share1', c ='blue', linestyle = '--')
+plt.plot(x, y2, label = 'Share2', c = 'green', linestyle='-.')
+plt.legend(loc = 'upper right')
+plt.xlabel('Time')
+plt.ylabel('Share Price')
+plt.title('Share price over Time')
+plt.grid(color = '#d2dbd0')
+
+
+###########################################################
+
+
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+y1 = [4757, 4665, 3291, 3603, 3601, 4400, 3244, 4825, 3423, 3187, 4618, 3785,
+      3636, 3146, 4027, 4016, 4388, 3689, 3103, 3429]
+y2 = [4027, 5892, 5300, 5369, 4075, 4765, 5722, 5977, 5557, 4908, 5968, 4844,
+      5523, 4522, 4185, 5089, 5197, 4149, 4105, 4471]
+
+plt.plot(x, y1, label = 'Share1')
+plt.scatter(x, y2,c='red', label = 'Share2')
+plt.legend()
+plt.xticks(range(1,21))
+plt.xlabel('Time')
+plt.ylabel('Share Price')
+plt.title('Share price over Time')
+
+"""# BAR CHART WITH VARIATIONS"""
+
+clr = []
+clr.extend(['r']*3)
+clr.extend(['g']*3)
+clr.extend(['b']*3)
+clr.extend(['c']*3)
+clr
+
+months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+sales1 = [1485, 1218, 1677, 1609, 1534, 1615, 1741, 1689, 1756, 1305, 1452, 1248]
+
+plt.figure(figsize=(12,5))
+plt.bar(months, sales1, width = 0.35, color = clr)#, bottom = [500,200,500, 200, 500, 200, 500, 200, 500, 200, 500 ,200]) 
+plt.xticks(rotation = 45)
+plt.xlabel('Time')
+plt.ylabel('Sales values')
+plt.ylim([0,2500])
+plt.title('Share price over Time', size = 18, color = '#ff2255')
+
+###########################################################
+
+months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+sales1 = [1485, 1218, 1677, 1609, 1534, 1615, 1741, 1689, 1756, 1305, 1452, 1248]
+sales2 = [1486, 1068, 1344, 1315, 1811, 1364, 1708, 1900, 1478, 1061, 1912, 1407]
+
+plt.figure(figsize=(10,5))
+plt.bar(months, sales1, width = 0.55, color = 'red', label = 'sales1') 
+plt.bar(months, sales2, width = 0.25, color = 'blue', label = 'sales2') 
+
+plt.legend()
+plt.xticks(rotation = 45)
+plt.xlabel('Time')
+plt.ylabel('Share Price')
+plt.title('Share price over Time', size = 18, color = '#ff2255')
+#discuss ussue here
+
+###########################################################
+
+
+x_1 = np.arange(0, len(months))-0.15
+x_2 = np.arange(0, len(months))+0.15
+print(x_1)
+print(x_2)
+
+###########################################################
+
+
+months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+sales1 = [1485, 1218, 1677, 1609, 1534, 1615, 1741, 1689, 1756, 1305, 1452, 1248]
+sales2 = [1486, 1068, 1344, 1315, 1811, 1364, 1708, 1900, 1478, 1061, 1912, 1407]
+
+x_1 = np.arange(0, len(months))-0.15
+x_2 = np.arange(0, len(months))+0.15   #+- vales are half of width parameter
+
+plt.figure(figsize=(12,4))
+plt.bar(x_1, sales1, width = 0.3, color = '#6FA33C', label = 'sales1') 
+plt.bar(x_2, sales2, width = 0.3, color = 'black', label = 'sales2') 
+
+plt.xticks(np.arange(0, len(months)), labels = months)
+plt.xlabel('Time')
+plt.ylabel('Share Price')
+plt.title('Share price over Time', size = 18, color = '#ff2255')
+plt.legend()
+
+###########################################################
+
+
+print(np.arange(0, len(months))-0.15)
+print(np.arange(0, len(months))+0.15)
+np.arange(0, len(months))
+
+"""# PIE CHART"""
+
+plt.bar(segment, revenue)
+
+segment = ['A','B','C','D','E','F']
+revenue = np.random.randint(5000, size = 6)
+plt.pie(revenue, labels = segment)
+plt.show()
+
+np.random.randint(5000, size = 3)
+
+"""pie chart with extra features"""
+
+segment = ['A','B','C','D','E','F']
+revenue = np.random.randint(5000, size = 6)
+
+exp = [0, 0, 0, 0.1, 0.2, 0.1]
+
+plt.figure(figsize=(8,8))
+plt.pie(revenue, 
+        labels = segment,
+        explode = exp,
+        colors = ['r','g','b','y','grey','pink'],
+        autopct = '%1.2f%%',
+        pctdistance = 1.1,
+        labeldistance = 0.6,
+        shadow = True)
+plt.legend()
+plt.show()
+
+"""# HISTOGRAM"""
+
+data1 = np.random.normal(50, size = 1000)
+plt.hist(data1, bins = 25,color = 'grey')#, histtype = 'step')
+plt.title('Normal distribution', size = 18, color = '#ff2255')
+
+###########################################################
+
+
+data = np.random.randint(40, 60, size = 1000)
+plt.hist(data, bins = 10,color = 'blue')
+plt.title('Uniform distribution', size = 18, color = '#ff2255')
+
+###########################################################
+
+
+data = np.random.randint(40, 60, size = 1000)
+#bar', 'barstacked', 'step',  'stepfilled'
+plt.hist(data, bins = 10,color = 'blue', histtype = 'barstacked')
+plt.hist(data1, bins = 25,color = 'grey', histtype = 'barstacked')
+plt.title('Uniform + normal distribution', size = 18, color = '#ff2255')
+
+"""# BOXPLOT"""
+
+plt.boxplot(data, labels=['data'])
+
+data1 = np.random.randint(200, size = 500)
+data2 = np.random.randint(250, size = 400)
+data3 = np.random.randint(300, size = 600)
+
+arr = [data1, data2, data3]
+
+plt.boxplot(arr, labels=['a','b','c'])
+plt.show()
+
+"""# HEATMAP"""
+
+sales1 = [132, 299, 234, 249, 230, 154, 173, 147, 141, 222, 261, 255, 263, 164, 236, 225, 263, 211, 298, 126, 223,
+           269, 211, 143, 193, 186, 202, 274, 109, 131, 194, 177, 292, 204, 162, 195, 206, 187, 269, 232]
+sales2 = [265, 153, 191, 216, 185, 202, 204, 152, 293, 191, 190, 172, 297, 176, 122, 248, 174, 122, 138, 114,
+           111, 202, 200, 104, 173, 135, 274, 166, 225, 167, 109, 167, 159, 189, 248, 297, 207, 256, 173, 175]
+plt.scatter(sales1, sales2)
+plt.grid()
+plt.show()
+plt.hist2d(sales1,sales2,bins=8, cmap='cool',cmin = 1)
+plt.colorbar()
+plt.show()
+
+"""# SUBPLOTS"""
+
+north = [132, 299, 234, 249, 230, 154, 173, 147, 141, 222, 261, 255, 263, 164, 236,
+         225, 263, 211, 298, 126, 223, 269, 211, 143, 193, 186, 202, 274, 109, 131,
+         194, 177, 292, 204, 162, 195, 206, 187, 269, 232]
+south = [265, 153, 191, 216, 185, 202, 204, 152, 293, 191, 190, 172, 297, 176, 122,
+         248, 174, 122, 138, 114, 111, 202, 200, 104, 173, 135, 274, 166, 225, 167,
+         109, 167, 159, 189, 248, 297, 207, 256, 173, 175]
+east = [127, 168, 193, 171, 275, 244, 192, 263, 253, 260, 299, 176, 153, 218, 248,
+        286, 126, 253, 236, 208, 175, 121, 130, 206, 215, 173, 166, 198, 219, 120,
+        298, 255, 188, 179, 193, 173, 198, 216, 122, 208]
+west = [101, 130, 272, 185, 293, 145, 233, 241, 259, 130, 257, 168, 207, 224, 229,
+        189, 254, 139, 273, 130, 185, 141, 160, 133, 284, 250, 185, 297, 123, 187,
+        225, 149, 288, 122, 119, 187, 124, 252, 223, 177]
+
+plt.plot(np.arange(0,40), north, label='north')
+plt.legend()
+plt.show()
+plt.plot(np.arange(0,40), south, label='south')
+plt.legend()
+plt.show()
+plt.plot(np.arange(0,40), east, label='east')
+plt.legend()
+plt.show()
+plt.plot(np.arange(0,40), west, label='west')
+plt.legend()
+plt.show()
+
+###########################################################
+
+
+plt.figure(figsize=(15,5))
+plt.plot(np.arange(0,40), north, label='north', color = 'r')
+plt.plot(np.arange(0,40), south, label='south', color = 'g')
+plt.plot(np.arange(0,40), east, label='east', color = 'b')
+plt.plot(np.arange(0,40), west, label='west', color = 'c')
+plt.legend()
+plt.show()
+#very untidy
+
+
+###########################################################
+
+
+plt.figure(figsize=(12,12))
+
+plt.subplot(2,2,1)
+plt.plot(np.arange(0,40), north, label='north')
+plt.legend()
+
+plt.subplot(2,2,2)
+plt.plot(np.arange(0,40), south, label='south')
+plt.legend()
+
+plt.subplot(2,2,3)
+plt.plot(np.arange(0,40), east, label='east')
+plt.legend()
+
+plt.subplot(2,2,4)
+plt.plot(np.arange(0,40), west, label='west')
+plt.legend()
+
+"""Axes objects"""
+
+#-------Getting Axes Objects for each Subplot and assigning each to different variable for subsequent usage---------------
+
+fig, ax = plt.subplots(2, 2, sharex=True, sharey = True,figsize=(15,10))       # Assign figure object to fig and Axes objects to ax
+ax1 = ax[0,0]                                   # Axes object for subplot 1 
+ax2 = ax[0,1]                                   # Axes object for subplot 2
+ax3 = ax[1,0]                                   # Axes object for subplot 3 
+ax4= ax[1,1]                                    # Axes object for subplot 4 
+
+#--------------------------Plotting data in Plot 1 and modifying its labels---------------------------
+ax1.plot(np.arange(0,40), north, label='north')                 
+ax1.set_title('North Sales')
+ax1.set_xlabel('Day_N')
+ax1.set_ylabel('Sale_N')
+
+#--------------------------Plotting data in Plot 2 and modifying its labels---------------------------
+ax2.plot(np.arange(0,40), south, label='south', c='red')
+ax2.set_title('South Sales')
+ax2.set_xlabel('Day_S')
+ax2.set_ylabel('Sales_S')
+    
+#--------------------------Plotting data in Plot 3 and modifying its labels---------------------------
+ax3.plot(np.arange(0,40), east, label='east', c='green')
+ax3.set_title('East Sales')
+ax3.set_xlabel('Day_E')
+ax3.set_ylabel('Sales_E')
+
+#--------------------------Plotting data in Plot 4 and modifying its labels---------------------------
+
+ax4.set_xlabel('Day_W')
+ax4.set_ylabel('Sales_W')
+ax4.set_title('West Sales')
+ax4.scatter(np.arange(0,40), north, label='north',marker='v')
+
+#-------------------------------------------------Solution --------------------------------------------------------------
+plt.tight_layout()

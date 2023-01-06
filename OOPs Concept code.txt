@@ -1,0 +1,161 @@
+"""
+
+class construction
+"""
+
+class Employee:
+
+    def printdetails(self):
+        return f"The Name is {self.name} whose Salary is {self.salary} and role is {self.role}"
+
+harry = Employee()
+harry.name = "Harry"
+harry.salary = 455
+harry.role = "Instructor"
+
+print(harry.salary)
+print(harry.printdetails())
+
+############################################
+rohan = Employee()
+rohan.name = "Rohan Singh"
+rohan.salary = 455400
+rohan.role = "Student"
+print(rohan.salary)
+print(rohan.printdetails())
+
+#here the init constructor is not being used so obj1 = Employee(attr1, attr2, ...) cannot be used
+
+pam = Employee()
+pam.name = "Pamela"
+pam.salary = 28500
+pam.role = 'ABC'
+pam.bonus = 500
+pam.printdetails()
+
+rohan.bonus
+
+import numpy as np
+arr1 = np.array([1,2,3])
+arr1.reshape((2,2))
+
+def addition11(a, b):
+  return a+b
+
+addition11(5,4)
+
+"""attributes"""
+
+class Employee_1:
+  school='KV-New Delhi'         #class attribute same for all objects
+  country='India'               #class attribute same for all objects
+  pincode=110022                #class attribute same for all objects
+    
+  def __init__(self, a_name, a_salary, role, dept, id):
+        self.name = a_name      #instance attribute specific to each object
+        self.salary = a_salary  #instance attribute specific to each object
+        self.role = role        #instance attribute specific to each object
+        self.dept = dept        #instance attribute specific to each object
+        self.id = id            #instance attribute specific to each object
+#############################################################################
+
+John = Employee_1("John", 25500, "Principal", "Education", 53)
+Jane = Employee_1("Jane", 20000, "VP", "Education", 54)
+Mark = Employee_1("Mark", 25000, "Accountant", "Admin", 55)
+
+print(Mark.dept)
+# now here John can have an extra attribute called bonus which is not a class attribute
+# and not in any other objects but only exists for John
+
+John.bonus = 50000
+
+print(John.__dict__)
+print(Mark.__dict__)
+print(John.country)
+
+Maria = Employee_1('Maria Brown', 26500, 'Administrator Head', 'Admin',56)
+Maria.bonus = 5000
+print(Mark.__dict__)
+print(Maria.__dict__)
+
+"""methods"""
+
+class Employee_2:
+  school='KV-New Delhi'         #class attribute same for all objects
+  country='India'               #class attribute same for all objects
+  pincode=110022                #class attribute same for all objects
+  default_bonus = 0.15
+    
+
+
+  def __init__(self, a_name, a_salary, a_role, a_dept, a_id):
+        self.name = a_name      #instance attribute specific to each object
+        self.salary = a_salary  #instance attribute specific to each object
+        self.role = a_role      #instance attribute specific to each object
+        self.dept = a_dept      #instance attribute specific to each object
+        self.id = a_id          #instance attribute specific to each object
+
+
+  #methods are functions in a class which are user defined
+  def fulldesc(self):
+    return f"{self.name} works as {self.role} in the {self.dept} department whose salary is {self.salary} and ID is {self.id}"
+
+  def salary_with_default_bonus(self):
+    jkl = self.salary * (1+self.default_bonus)
+    return f"Salary with default bonus is {jkl}"
+
+
+#########################################################################################
+
+
+John = Employee_2("John", 25500, "Principal", "Education", 53)
+print(John.fulldesc())
+print(John.salary_with_default_bonus())
+
+#here a_salary is like the variable called in a function, but self.salary means that the name
+#of the attribute which will be called by object will be called salary and not a_salary
+
+John.pincode
+
+Jacob = Employee_2('Jacob Z', 38500, 'President', 'Admin', 57)
+
+Jacob.salary_with_default_bonus()
+
+"""Inheritance Encapsulation and Polymorphism"""
+
+class Occupation: #parenr cLoss 
+  def __init__(self, name, income, work_hours):
+     self.name = name 
+     self.income = income 
+     self.work_hours = work_hours 
+
+  def goodjob(self):
+     if(self.income>300000 and self.work_hours<25 ): 
+       return f"{self.name} is a good job" 
+     else:
+       return f"{self.name} is not a good job" 
+
+#####     child classes     #####
+class teacher(Occupation):
+   def desc(self):
+      return "Teacher educates students" 
+
+class doctor(Occupation):
+   def desc(self):
+      return "Doctor heals people" 
+
+class begger(Occupation):
+  def desc(self):
+     return "Begger begs people"
+
+p1 = Occupation('AABB', 25012568,27)
+p1.goodjob()
+
+p1.desc()
+
+person1 = teacher('jason', 25000, 14)
+person2 = doctor('mason', 450000, 36)
+print(person1.desc())
+print(person2.desc())
+
+person1.goodjob()

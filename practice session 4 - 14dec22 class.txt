@@ -1,0 +1,475 @@
+#NOTE: Please download notepad++ from the web and copy this entire code into it and in the language tab above choose python as the language
+#      to see this code in a very neat format which is easy to understand and interpret. 
+
+
+
+
+
+
+l = [1,2,3,4,5,6,7,8,9,10]
+print(*range(len(l)))
+
+# l = [1,2,3,4,5,6,7,8,9,10]
+# l1 = []
+# for i in range(len(l)):
+#   s = sum(l[0:i+1])
+#   print(i)
+#   l1.append(s)
+
+# print(l1)
+
+i=0
+while(i<=10):
+  print('\n',i)
+  print(sum(l[0:i+1]))
+  i=i+1
+
+"""**Question-1**
+Sometimes the data has few duplicate values which will affect the analysis done. In this problem, you will be given a list. You have to find and delete the duplicates and print the updated list with no duplicates.
+
+----------------------------------------------------------------------
+Input:
+A list of integers.
+
+Output:
+A list of integers, with duplicates removed if any.
+
+----------------------------------------------------------------------
+Sample input:
+[8, 9, 2, 2, 3, 4, 5, 2]
+
+Sample output:
+[8, 9, 2, 3, 4, 5]
+
+----------------------------------------------------------------------
+Sample input:
+[4, 4, 4, 4]
+
+Sample output:
+[4]
+
+----------------------------------------------------------------------
+Note the order of the data did not change in input and output.
+
+"""
+
+#one possible solution when order doesnt matter
+list1 = [8, 9, 2, 2, 3, 4, 5, 2]
+s1 = set(list1)
+print(s1)
+list2 = list(s1)
+print(list2)
+
+#another solution
+list1 = [8, 9, 2, 2, 3, 4, 5, 2]
+d = []
+
+for i in list1:
+  if i not in d:
+    d.append(i)
+    print(d)
+    print('\n')
+  else: print('neglected')
+
+#final list
+print(d)
+
+"""**Question-2**
+
+You will be converting a dictionary, of string(keys) and list of string (values),  to a list of strings. Please check the sample input/output for clarification.
+
+
+Input:
+A dictionary with keys as strings and values as a list of strings.
+
+Output:
+A list of strings
+
+
+Sample input:
+
+{'Mobile': ['Redmi', 'Samsung', 'Realme'], 
+'Laptop': ['Dell', 'HP'],
+'TV': ['Videocon', 'Sony'] }
+
+Sample output:
+
+['Mobile_Redmi', 'Mobile_Samsung', 'Mobile_Realme', 'Laptop_Dell', 'Laptop_HP', 'TV_Videocon', 'TV_Sony']
+
+
+Sample input:
+
+{ 'Pen': ['Gel', 'Ink', 'ball'],
+'Mobile': ['Android', 'apple'] }
+
+Sample output:
+
+['Pen_Gel', 'Pen_Ink', 'Pen_ball', 'Mobile_Android', 'Mobile_apple']
+
+"""
+
+d = {'Mobile': ['Redmi', 'Samsung', 'Realme'], 'Laptop': ['Dell', 'HP'], 'TV': ['Videocon', 'Sony'] }
+answer = []
+for key in d.keys():
+  for val in d[key]:
+    answer.append(str(key)+'_'+str(val))
+
+print(answer)
+
+"""**Question-3**
+
+For the purpose of this question, we will define something called an Relevel string. Note that this definition is not valid outside this question. A Relevel string is the frequency of its characters, something like- 1, 2, 3, 4, .... In this a character appears only once, another appears twice, another appears thrice and so on. For example string '$yrr$ssrsr' is a Relevel string, since the frequency of y:1, $:2, s:3, r:4, however string '$yrr$ssrsr%' will not be Relevel string since it has two characters (y and %) with frequency 1. The frequency of characters should be of form 1, 2, 3, 4, 5... only.
+Given a string, can you determine if the string is Relevel string or no?
+
+
+Input:
+
+A string
+
+Output:
+
+Boolean depending whether the string is Relevel string or not
+
+
+Sample input:
+
+$yrr$ssrsr
+
+Sample output:
+
+True
+
+
+Sample input:
+
+$yrr$ssrsr%
+
+Sample output:
+
+False
+
+Sample input:
+
+ab#ab#aba
+
+Sample output:
+
+False
+
+Sample input:
+
+ab#ab#ab6a
+
+Sample output:
+
+True
+
+"""
+
+# abbcccdddd
+# abcbcdcddd
+# errvvv
+# aabbccc  - not relevel string
+
+string = 'ababcabcde'
+unq = len(set(string))
+d1 = {}
+
+for chr in list(string):
+  #print(chr)
+  if chr not in d1:
+    d1[chr]=1
+  else:
+    d1[chr]=d1[chr]+1
+  #print(d1)
+  #print('\n')
+
+print(d1)
+l2 = list(d1.values())
+l2.sort()
+
+l3 = [*range(1,unq+1)]
+
+l2==l3
+
+"""**Question-4**
+
+You will be given a string with a lot of brackets. You have to print if the brackets are balanced or not. Remember, there are three types of brackets: ‘( )’,  ‘{ }’ and ‘[ ]’.
+
+----------------------------------------------------------------------
+Input:
+
+A string
+
+Output:
+
+Yes, if the brackets are balanced.
+No otherwise.
+
+----------------------------------------------------------------------
+Sample input:
+
+){[[]]}())()
+
+Sample output:
+
+No
+
+----------------------------------------------------------------------
+Sample input 2:
+
+[](){[]()(){}}
+
+Sample output 2:
+
+Yes
+
+"""
+
+# =sumifs(A1:A3, max(a3:v6)+((d4^5)+65))  we need to balancw the brackets
+# [{6+5}*{(3-2)/5}]+[(34-2]    )is missing
+# ((sdsdsd+sdsds(sdsdsdsdsds)))
+s = '[{6+5}*{(3-2)/5}]+[(34-2)]'
+j = 0
+lst = []
+if(s.count('(')==s.count(')') and s.count('{')==s.count('}') and s.count('[')==s.count(']')):
+  j=1
+  for i in range(len(s)):
+    s1 = s[0:i+1]
+    if(s1.count('(')>=s1.count(')')):
+      lst.append(True)
+    else:
+      lst.append(False)
+    if(s1.count('[')>=s1.count(']')):
+      lst.append(True)
+    else:
+      lst.append(False)
+    if(s1.count('{')>=s1.count('}')):
+      lst.append(True)
+    else:
+      lst.append(False)
+else: print('brackets not properly counted')
+
+if(j==1):
+  if(False in lst):
+    print('unbalanced')
+  else: print('balanced')
+
+"""**Question-5**
+
+You will be given a list of repeated elements. You have to find the maximum distance between two same elements. The answer will be zero if there are no repeated elements.
+
+----------------------------------------------------------------------
+Input:
+A non-empty list of integers.
+
+Output:
+A single integer denoting the maximum distance between two same integers.
+
+----------------------------------------------------------------------
+Sample input:
+
+[1, 2, 3, 2, 5, 1, 2, 4, 6, 2, 7, 8, 6]
+
+Sample output:
+
+8
+
+Explanation:
+
+Max distance for 1: 5
+
+Max distance for 2: 8
+
+Max distance for 3: 0
+
+Max distance for 4: 0
+
+Max distance for 5: 0
+
+Max distance for 6: 4
+
+Max distance for 7: 0
+
+Max distance for 8: 0
+"""
+
+l1 = [1, 2, 3, 2, 5, 1, 2, 4, 6, 2, 7, 8, 6]
+
+d = {}
+for i in range(len(l1)):
+  #print(i)
+  #print(l1[i])
+  if(l1[i] not in d):
+    d[l1[i]] = [i]
+  else: d[l1[i]].append(i)
+
+print(d)
+
+
+diff = []
+for v in d.values():
+    diff.append(v[-1] - v[0])
+
+print(max(diff))
+
+"""**Question-6:**
+
+You have an array of integers of length n spanning 0 to n with one missing. Write a function missing_number that returns the missing number in the array.
+
+Sample Input:
+
+[0,1,2,4,5] 
+
+Sample Output:
+
+missing_number(nums) -> 3
+"""
+
+l = [0,1,2,3,4,5,6,7,8,10,11]
+n = max(l)
+n*(n+1)/2 - sum(l)
+
+"""**Question-7:**
+
+Let’s say there are many vehicles on a long road. At each mile along the road, a checkpoint indicates the length traveled across the road.
+
+You are given a list called vehicles which indicates the number of vehicles between each checkpoint. For example, the list [7,4,3] would mean that there are seven vehicles before the first checkpoint, four vehicles between the first and second checkpoints, and three vehicles between the second and third checkpoints.
+
+Write a function range_vehicles that will give the number of vehicles between the start and end checkpoints.
+
+Note: start may be 0
+
+**Input:**
+
+vehicles = [5,6,4,2,1]
+
+start = 1
+
+end = 3
+
+**Output:**
+
+10
+"""
+
+# basically sum up values in an array from one point to other.
+import ast
+
+vehicle_list = ast.literal_eval(input())
+start_num = int(input())
+end_num = int(input())
+
+
+def range_vehicles(vehicles, start, end):
+  return sum(vehicles[start:end])
+
+range_vehicles(vehicle_list, start_num, end_num)
+
+"""**Question-8**
+
+Given a dictionary with keys of letters and values of a list of letters, write a function closest_key to find the key with the input value closest to the beginning of the list.
+
+**Input:**
+
+dictionary = {
+    'a' : ['b','c','e'],
+    'm' : ['c','e'],
+}
+
+input = 'c'
+
+**Ouput:**
+
+m
+"""
+
+import ast
+dict_data = ast.literal_eval(input())
+string = input()
+
+
+def closest_key(dictionary, input):
+    #print(dictionary.keys())
+    return min(dictionary.keys(), key=lambda k: abs(ord(input)-ord(dictionary[k][0])))
+closest_key(dict_data, string)
+
+#gives the key who's value's first letter is closest to the input
+# a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+"""**Question-9**
+
+You are given a string that represents some floating-point number. Write a function, digit_accumulator, that returns the sum of every digit in the string.
+
+**Input:**
+
+s = "123.0045"
+
+**Output:**
+
+15
+"""
+
+#1212.2323
+st = '1+-*212.llkk2323'
+acc=0
+for i in st:
+  if(i in '0123456789'):
+    acc = acc+int(i)
+acc
+
+"""**Question-10**
+
+Using the Map function, create a list 'cube', which consists of the cube of numbers in input_list.
+
+Input:
+
+[5,6,4,8,9] 
+
+Output:
+
+[125, 216, 64, 512, 729].
+"""
+
+input_list = [5,6,4,8,9]
+cube = list(map(lambda x: x**3, input_list))
+print(cube)
+
+"""**Question-11**
+
+Create a list ‘name’ consisting of the combination of the first name and the second name from list 1 and 2 respectively. 
+
+
+Input:
+
+[ ['Ankur', 'Avik', 'Kiran', 'Nitin'], ['Narang', 'Sarkar', 'R', 'Sareen']]
+
+Output:
+
+['Ankur Narang', 'Avik Sarkar', 'Kiran R', 'Nitin Sareen']
+"""
+
+input_list = [ ['Ankur', 'Avik', 'Kiran', 'Nitin'], ['Narang', 'Sarkar', 'R', 'Sareen']]
+f_name = input_list[0]
+l_name = input_list[1]
+full_name = list(map(lambda f,l: f+" "+l ,f_name, l_name))
+full_name
+
+"""**Question-12**
+
+Add the element ‘Python’ to a tuple input_tuple = ('Monty Python', 'British', 1969). 
+"""
+
+t1 = ('Monty Python', 'British', 1969)
+l1 = list(t1)
+l1.append('python')
+t2 = tuple(l1)
+t2
+
+#example of map function
+l1 = [1,2,3]
+l2 = [1000,2000,3000,4000,5000,6000]
+ans1 = list(map(lambda a,b: a-b, l1, l2))
+print(ans1)
+ans2 = list(map(lambda a,b: a-b, l2, l1))
+print(ans2)

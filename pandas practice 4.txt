@@ -1,0 +1,188 @@
+
+# Topics to be covered -
+# (1) Filtering Dataframe
+# (2) Usage of loc and iloc functions
+# (3) Sorting Dataframe
+# (4) Pivot tables
+# (5) Feature Engineering
+
+# Importing important libraries
+import pandas as pd
+import numpy as np
+
+# Creating the dataset
+df = pd.DataFrame({
+    'Name' : ['Jane', 'John', 'Ashley', 'Mike', 'Emily', 'Jack', 'Catlin', 'Mag'],
+    'Ctg' : ['A', 'A', 'C', 'B', 'B', 'C', 'B', 'B'],
+    'Val' : np.random.random(8).round(2),
+    'Val2' : np.random.randint(1, 10, size = 8)
+})
+df.head()
+
+# Filtering according to logical operators
+df[df['Val'] > 0.5]
+
+# Logical Operator works on String ?
+df[df['Name'] > 'Jane']
+
+# Logical Operators for strings will work : 
+# Only names with alphabetical order greater than Jane will appear.
+
+# Adding multiple conditions while filtering
+df[(df['Val'] < 0.5) | (df['Val2'] == 7)]
+
+# Adding multiple conditions while filtering
+df[(df['Val'] < 0.5) & (df['Val2'] == 5)]
+
+df['Name']
+
+# isin() Operator
+nameslist = ['John', 'Catlin', 'Mike']
+df[df['Name'].isin(nameslist)]
+
+df['Name'].str.startswith('J')
+
+~df['Name'].str.startswith('J')
+
+# Str accessor
+df[df['Name'].str.startswith('J')]
+
+# Str accessor
+df[df['Name'].str.contains('y')]
+
+# Tilde Operator (reverses true/false)
+df[~df['Name'].str.startswith('J')]
+
+# nlargest
+df.nlargest(3, 'Val')
+
+df.sort_values(by = 'Val', ascending=False)
+
+# nsmallest
+df.nsmallest(2, 'Val')
+
+df.sort_values(by = 'Val')
+
+# loc and iloc -
+# loc : select rows and columns using labels
+# iloc : select rows and columns using indices
+
+# 4th and 5th row with all columns
+df.iloc[3:5, :]
+
+df.iloc[:, ::-1]
+
+# If the dataframe has integer index, the indices and labels of the rows are same.
+
+
+df
+
+#interesting diff bw loc and iloc when index is reset
+
+# 3rd to 5th row with all columns
+df.loc[3:5, :]
+
+# 3rd and 4th row with all columns
+df.iloc[3:5, :]
+
+# Changing the index
+df.index = ['A','B','o','D','E','F','G','H']
+
+df
+
+# loc function
+df.loc['B':'D', :]
+
+# loc function
+df.iloc[1:3, :]
+
+# Sorting the dataframe
+df.head()
+
+# Ordering rows in alphabetical order
+df.sort_values(by = ['Name'])
+
+# Sorting rows 
+df.sort_values(by = ['Val'], ascending = False)
+
+# Sorting rows 
+df.sort_values(by = ['Val2'], ascending = True)
+
+# Creating the dataset
+df = pd.DataFrame({
+    'Name' : ['Jane', 'John', 'Jack', 'Mike', 'Emily', 'Jack', 'Catlin'],
+    'Ctg' : ['A', 'A', 'B', 'B', 'B', 'C', 'B'],
+    'Val' : np.random.random(7).round(2),
+    'Val2' : np.random.randint(1, 10, size = 7)
+})
+df.head()
+
+df.sort_values(by = ['Ctg'])
+
+# Sorting on multiple rows
+df.sort_values(by = ['Ctg', 'Name'])
+
+# Sorting on multiple rows in different orders
+df.sort_values(by = ['Ctg', 'Name'], ascending = [True, False])
+
+# Pivot Tables
+
+# Creating the dataframe
+df = pd.DataFrame({
+    'Product' : ['Carrots', 'Broccoli', 'Banana', 'Banana',
+                'Beans', 'Orange', 'Broccoli', 'Banana'],
+    'Category' : ['Vegetable', 'Vegetable', 'Fruit', 'Fruit',
+                 'Vegetable', 'Fruit', 'Vegetable', 'Fruit'],
+    'Quantity' : [8,5,3,4,5,9,11,8],
+    'Amount' : [270,239,617,384,626,610,62,90]
+})
+df
+
+pd.pivot_table(df, index = 'Category',columns = 'Product',  values = ['Quantity', 'Amount'],
+               aggfunc = {'Quantity' : ['sum', 'count'], 'Amount': ['mean', 'count']})
+
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Product'],
+                      values = ['Amount'],
+                      aggfunc = 'sum')
+print(pivot)
+
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Product'],
+                      values = ['Amount'],
+                      columns= ['Category'],
+                      aggfunc = 'sum')
+print(pivot)
+
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Category'],
+                      values = ['Amount'],
+                      aggfunc = 'sum')
+print(pivot)
+
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Product', 'Category'],
+                      values = ['Amount'],
+                      aggfunc = 'sum')
+print(pivot)
+
+# Getting mean, median, minimum sale 
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Category'],
+                      values = ['Amount'],
+                      aggfunc = ['mean', 'median', 'min'])
+print(pivot)
+
+# Getting mean, median, minimum sale 
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Product'],
+                      values = ['Amount'],
+                      aggfunc = ['mean', 'median', 'min'])
+print(pivot)
+
+# Getting mean of quantity, sum of amt
+# Pivot table with sum aggregator function
+pivot = df.pivot_table(index = ['Category'],
+                      values = ['Amount', 'Quantity'],
+                      aggfunc = {'Amount': ['min', 'max', 'sum'], 'Quantity': ['min', 'max', 'mean']})
+print(pivot)
